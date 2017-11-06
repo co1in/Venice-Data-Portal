@@ -3,6 +3,7 @@
 {
   text-align: center;
   background-color: $gray;
+  position: relative;
   
   .row
   {
@@ -12,5 +13,24 @@
   p
   {
     margin-bottom: 0;
+  }
+  
+  .wpi-logo
+  {
+    @media (min-width: 768px)
+    {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+    }
+    @media (max-width: 767px)
+    {
+      padding: 5px 0px;
+    }
+    
+    img
+    {
+      height: $footer-height - 20px;
+    }
   }
 }
