@@ -1,9 +1,36 @@
 <div class="app-header">
-  <div class="container">
-    <div class="row header-row d-flex align-items-center">
-      <div class="title-left col-md-5">
-        <h3>Venice Project Center</h3>
-        <h4>Data Portal</h4>
+  <div class="logo-wrapper">
+    <div class="container logo-container">
+      <div class="row d-flex align-items-center">
+        <div class="col-md-8">
+          <h2>VPC Data Portal</h2>
+        </div>
+        <div class="d-none d-md-flex col-md-4 align-items-center nav-links">
+          <!-- <div>
+            <a href="https://www.wpi.edu" target="_blank"><img src="assets/wpi-logo.svg" /></a>
+          </div> -->
+          <span class="nav-link"><a href="/visuals">Visuals</a></span>
+          <span class="nav-link"><a href="/visuals">Articles</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-wrapper">
+    <div class="container nav-container">
+      <div class="row d-flex align-items-center">
+        <div class="col-md-4 data-column">
+          <mat-form-field>
+            <mat-select placeholder="Select a Dataset">
+              <mat-option *ngFor="let dataset of datasets" [value]="dataset.id">{{ dataset.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-4">
+          
+        </div>
+        <div class="col-md-4">
+          
+        </div>
       </div>
     </div>
   </div>
