@@ -1,0 +1,18 @@
+$header-height: 100px;
+$footer-height: 50px;
+
+.body {
+  margin-top: 100px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+
+body {
+  background-color: $background;
+  margin: $header-height 0px 0px 0px;
+}
+
+.content
+{
+  min-height:calc(100vh - #{$header-height + $footer-height});
+}

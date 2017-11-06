@@ -1,0 +1,26 @@
+h1 {
+  font: {
+    family: 'Roboto', sans-serif;
+    size: 3em;
+  }
+
+  a {
+    color: $text;
+    text-decoration: none;
+
+    &:hover {
+      color: $text;
+      text-decoration: none;
+    }
+  }
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+footer {
+  font: {
+    size: .9em;
+  }
+}

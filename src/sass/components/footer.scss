@@ -1,0 +1,16 @@
+
+.footer
+{
+  text-align: center;
+  background-color: $gray;
+  
+  .row
+  {
+    height: $footer-height;
+  }
+  
+  p
+  {
+    margin-bottom: 0;
+  }
+}

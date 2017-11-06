@@ -17,8 +17,8 @@ This site was created as part of an Interactive Qualifying Project (IQP) for Wor
 * Kristen Dettloff
 
 Tentative Production URL: [data.veniceprojectcenter.org](data.veniceprojectcenter.org)
-Development URL: [https://data-site-test.firebaseapp.com/](https://data-site-test.firebaseapp.com/)
 
+Development URL: [https://data-site-test.firebaseapp.com/](https://data-site-test.firebaseapp.com/)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
 

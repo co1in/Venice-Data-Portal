@@ -1,0 +1,19 @@
+
+.app-header
+{
+  height: $header-height;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: $primary;
+  
+  .header-row
+  {
+    height: $header-height;
+  }
+  
+  .title-left
+  {
+    
+  }
+}
