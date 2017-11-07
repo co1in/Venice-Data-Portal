@@ -10,9 +10,10 @@
     height: $footer-height;
   }
   
-  p
+  p, p>a
   {
     margin-bottom: 0;
+    color: #777;
   }
   
   .wpi-logo

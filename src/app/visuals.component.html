@@ -1,1 +1,22 @@
-
+<div class="nav-wrapper">
+  <div class="container nav-container">
+    <div class="row d-flex align-items-center">
+      <div class="data-column">
+        <div class="visual-selector">
+          <mat-form-field>
+            <mat-select placeholder="Select a Dataset" [(value)]="selected" (change)="onDatasetChange($event.value)">
+              <mat-option *ngFor="let dataset of datasets" [value]="dataset.id">{{ dataset.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="visual-selector" *ngIf="selected != ''">
+          <mat-form-field>
+            <mat-select placeholder="Select an Attribute" [disabled]="selected == ''">
+              <mat-option *ngFor="let visual of visuals" [value]="visual.id">{{ visual.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

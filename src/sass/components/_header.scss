@@ -63,18 +63,12 @@
     {
       color: $primary-text;
       margin: 0;
+      display: inline-block;
     }
-  }
-  
-  .nav-wrapper
-  {
-    height: $header-nav-height;
-    background-color: $gray;
     
-    .data-column
+    a:hover
     {
-      padding-top: 5px;
+      text-decoration: none;
     }
   }
-  
 }

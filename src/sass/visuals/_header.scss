@@ -1,0 +1,16 @@
+.nav-wrapper
+{
+  height: $header-nav-height;
+  background-color: $gray;
+  
+  .data-column
+  {
+    padding-top: 5px;
+    
+    .visual-selector
+    {
+      padding-left: 15px;
+      display: inline-block;
+    }
+  }
+}
