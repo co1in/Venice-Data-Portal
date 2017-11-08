@@ -39,7 +39,6 @@ export class VisualsComponent implements OnInit
   
   ngAfterViewInit()
   {
-    console.log($('.site-title>h1'));
     $(document).ready(function()
     {
       $('.site-title>h1').css('transform', 'scale(1)');
