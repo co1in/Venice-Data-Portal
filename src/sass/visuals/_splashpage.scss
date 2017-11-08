@@ -1,0 +1,11 @@
+
+.site-title
+{
+  font-family: Roboto, sans-serif;
+  text-align: center;
+  
+  h1 {
+    transform: scale(0);
+    transition: 0.5s all;
+  }
+}

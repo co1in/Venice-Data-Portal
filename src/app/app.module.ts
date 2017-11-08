@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header.component';
 import { VisualsComponent } from './visuals.component';
 import { ArticlesComponent } from './articles.component';
+import { DownloadsComponent } from './downloads.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     VisualsComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    DownloadsComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +38,10 @@ import { ArticlesComponent } from './articles.component';
       {
         path: 'articles',
         component: ArticlesComponent
+      },
+      {
+        path: 'downloads',
+        component: DownloadsComponent
       }
     ])
   ],
