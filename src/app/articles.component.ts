@@ -13,16 +13,7 @@ export class ArticlesComponent
     (<any>window).visualize.Main.renderVisualFromConfig(`{
       "type": "bar",
       "dataSet": "ponti",
-      "attributes": {
-        "width": 600,
-        "height": 400,
-        "font_size": "1em",
-        "colors": [],
-        "category_order": "",
-        "group_by_main": "Description of Step Face Conditions",
-        "group_by_stack": "Address Letter",
-        "title": "Bridge Step Face Conditions"
-      }
+      "attributes": {"width":600,"height":400,"font_size":"8","x_font_rotation":"0","x_font_x_offset":"17","x_font_y_offset":0,"colors":{"mode":"list","colorspace":"hcl","list":["264"]},"hide_empty":"","category_order":"","group_by_main":"Description of Step Face Conditions","group_by_stack":"Address Letter"}
     }`,
      'visual2');
   }

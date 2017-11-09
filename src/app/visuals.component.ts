@@ -21,7 +21,7 @@ export class VisualsComponent implements OnInit
 {
   currentSelectedDataset = '';
   dataSelectDisabled=true;
-  firebaseData = [];
+  firebaseData = {};
   selected = '';
   datasets = [
     // {id: 1, name: "Ponti"},
@@ -37,12 +37,13 @@ export class VisualsComponent implements OnInit
   async getFirebaseData()
   {
     const db = firebase.firestore();
+    const tempFirebaseData = [];
     await db.collection('configs').get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           const entry = doc.data();
           entry.id = doc.id;
           entry.attributes = JSON.parse(entry.attributes);
-          this.firebaseData.push({
+          tempFirebaseData.push({
             type: entry.type,
             dataSet: entry.dataSet,
             attributes: entry.attributes
@@ -52,19 +53,19 @@ export class VisualsComponent implements OnInit
     });
     
     let groupedData = {};
-    for(let i = 0; i < this.firebaseData.length; i++)
+    for(let i = 0; i < tempFirebaseData.length; i++)
     {
-      if(!groupedData.hasOwnProperty(this.firebaseData[i].dataSet))
+      if(!groupedData.hasOwnProperty(tempFirebaseData[i].dataSet))
       {
         //Make a new key in the grouped data dictionary
-        groupedData[this.firebaseData[i].dataSet] = [];
+        groupedData[tempFirebaseData[i].dataSet] = [];
         
         //Add this option to the datasets dropdown
-        this.datasets.push({id:this.firebaseData[i].dataSet, name:this.firebaseData[i].dataSet});
+        this.datasets.push({id:tempFirebaseData[i].dataSet, name:tempFirebaseData[i].dataSet});
       }
       
       // Add this visual to the grouped data dictionary
-      groupedData[this.firebaseData[i].dataSet].push(this.firebaseData[i]);
+      groupedData[tempFirebaseData[i].dataSet].push(tempFirebaseData[i]);
     }
     
     this.firebaseData = groupedData;

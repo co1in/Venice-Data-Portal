@@ -1,5 +1,5 @@
 
-.visualsplash
+.visualsplash > .row
 {
   min-height: calc(100vh - #{$header-nav-height + $header-height + $footer-height});
 }
