@@ -1,4 +1,9 @@
 
+.visualsplash
+{
+  min-height: calc(100vh - #{$header-nav-height + $header-height + $footer-height});
+}
+
 .site-title
 {
   font-family: Roboto, sans-serif;
