@@ -1,16 +1,25 @@
 
 .visualsplash > .row
 {
-  min-height: calc(100vh - #{$header-nav-height + $header-height + $footer-height});
+  // min-height: calc(100vh - #{$header-nav-height + $header-height + $footer-height});
 }
 
 .site-title
 {
   font-family: Roboto, sans-serif;
   text-align: center;
+  margin: 10px 0px;
   
   h1 {
     transform: scale(0);
     transition: 0.5s all;
   }
+}
+
+#content {
+  width: 100%;
+}
+
+.slick-prev:before, .slick-next:before {
+  color: #222;
 }

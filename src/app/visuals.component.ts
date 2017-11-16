@@ -36,19 +36,18 @@ export class VisualsComponent implements OnInit
   
   async getFirebaseData()
   {
-    const db = firebase.firestore();
+    const db = firebase.database();
     const tempFirebaseData = [];
-    await db.collection('configs').get().then((querySnapshot) => {
+    await db.ref('/viz').once('value').then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          const entry = doc.data();
-          entry.id = doc.id;
+          const entry = doc.val();
+          entry.id = doc.key;
           entry.attributes = JSON.parse(entry.attributes);
           tempFirebaseData.push({
             type: entry.type,
             dataSet: entry.dataSet,
             attributes: entry.attributes
           });
-          // this.visuals.push({id: entry.id, name: entry.attributes.type});
         });
     });
     
@@ -87,13 +86,20 @@ export class VisualsComponent implements OnInit
   onVisualChange(newVisual)
   {
     console.log("New Visual", newVisual);
-    (<any>window).visualize.Main.renderVisualFromConfig(this.firebaseData[this.currentSelectedDataset][newVisual],
+    (<any>window).visualize.renderVisualFromConfig(this.firebaseData[this.currentSelectedDataset][newVisual],
       'content');
   }
   
   ngOnInit()
   {
-    (<any>window).visualize.Main.renderVisualFromConfig('{"type":"donut","dataSet":"ponti","attributes":{"width":500,"height":500,"font_size":"19","color":{"mode":"interpolate","colorspace":"hcl","range":[0,359]},"label_mode":"hover","category_order":"","group_by":"Material of Summit Pavement","title":""}}', 'content');
+    (<any>window).visualize.renderVisualFromConfig(
+      '{"type":"Bubble-Chart","dataSet":"Venice-Convents","attributes":{"width":500,"height":500,"dontDefineDimensions":false,"font_size":"12","label_mode":"always","hide_empty":true,"category_order":"","group_by":"Sestiere","font_color":"#000000","title":"Convents by Sestiere","color":{"mode":"manual","colors":[],"single_color":"#3d3e80"}}}',
+      'visual1'
+    );
+    (<any>window).visualize.renderVisualFromConfig(
+      '{"type":"Donut-Chart","dataSet":"MERGE-Ponti","attributes":{"width":500,"height":500,"dontDefineDimensions":false,"font_size":20,"hide_empty":true,"show_legend":true,"color":{"mode":"manual"},"items":{"1.71-2.71":{"weight":0,"color":"#ff3333"},"2.71-3.71":{"weight":1,"color":"#d6ff33"},"98.71-99.71":{"weight":2,"color":"#33ff85"},"0.71-1.71":{"weight":3,"color":"#3385ff"},"3.71-4.71":{"weight":3,"color":"#d633ff"},"2-3":{"weight":0,"color":"#c92d2f"},"1-2":{"weight":1,"color":"#ea3c32"},"3-4":{"weight":2,"color":"#141a31"},"99-100":{"weight":5,"color":"#a22229"},"4-5":{"weight":4,"color":"#333380"},"0-1":{"weight":4,"color":"#a50c3a"}},"label_mode":"hover","group_by":"Height Center (m)","title":"Center Height of Venetian Bridges","binSize":1,"binStart":"0","order":[]}}',
+      'visual2'
+    );
     this.getFirebaseData();
   }
   
@@ -102,6 +108,12 @@ export class VisualsComponent implements OnInit
     $(document).ready(function()
     {
       $('.site-title>h1').css('transform', 'scale(1)');
+      $('#content').slick({
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        autoplay: false,
+        autoplaySpeed: 2000,
+      });
     });
   }
 }
