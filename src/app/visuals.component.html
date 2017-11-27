@@ -1,25 +1,19 @@
-<div class="nav-wrapper">
+<!-- <div class="nav-wrapper">
   <div class="container nav-container">
-    <div class="row d-flex align-items-center">
-      <div class="data-column">
-        <div class="visual-selector">
+    <div class="row d-flex align-items-top">
+        <div class="visual-selector col-md-3">
           <mat-form-field>
-            <mat-select placeholder="Select a Dataset" [disabled]="dataSelectDisabled" [(value)]="selected" (change)="onDatasetChange($event.value)">
+            <mat-select placeholder="Select a Category" [disabled]="dataSelectDisabled" [(value)]="selected" (change)="onDatasetChange($event.value)">
               <mat-option *ngFor="let dataset of datasets" [value]="dataset.id">{{ dataset.name }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="visual-selector" *ngIf="selected != ''">
-          <mat-form-field>
-            <mat-select placeholder="Select an Attribute" [disabled]="selected == ''" (change)="onVisualChange($event.value)">
-              <mat-option *ngFor="let visual of visuals" [value]="visual.id">{{ visual.name }}</mat-option>
-            </mat-select>
-          </mat-form-field>
+        <div class="col-lg-7 d-none d-lg-inline-block offset-1">
+          Welcome to the VPC data portal! You can use the dropdown on the left to browse visual about certain topics related to Venice.
         </div>
-      </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="container visualsplash">
   <div class="site-title">
@@ -28,20 +22,18 @@
   <div class="row">
     <div class="" id="content">
       <div class="slider-item" id="visual1">
-        <p>Testing content 1 2 3... Done.</p>
       </div>
       <div class="slider-item" id="visual2">
-        <p>Testing content 1 2 3... Done.</p>
       </div>
       <div class="slider-item" id="visual3">
-        <p>Testing content 1 2 3... Done.</p>
       </div>
       <div class="slider-item" id="visual4">
-        <p>Testing content 1 2 3... Done.</p>
       </div>
-      <div class="slider-item" id="visual5">
-        <p>Testing content 1 2 3... Done.</p>
-      </div>
+    </div>
+  </div>
+  <div class="row" id="dataset-grid">
+    <div class="col-12 dataset-title">
+      <h2>Browse our Visuals by Category</h2>
     </div>
   </div>
 </div>

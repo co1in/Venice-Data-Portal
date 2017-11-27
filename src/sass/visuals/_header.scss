@@ -3,14 +3,15 @@
   height: $header-nav-height;
   background-color: $gray;
   
-  .data-column
+  .container
   {
     padding-top: 5px;
-    
+      
     .visual-selector
     {
       padding-left: 15px;
       display: inline-block;
     }
   }
+
 }

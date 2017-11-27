@@ -36,6 +36,10 @@ import { DownloadsComponent } from './downloads.component';
         component: VisualsComponent
       },
       {
+        path: 'visuals/:dataset',
+        component: VisualsComponent
+      },
+      {
         path: 'articles',
         component: ArticlesComponent
       },
