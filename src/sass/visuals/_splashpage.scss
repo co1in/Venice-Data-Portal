@@ -61,6 +61,11 @@
 
 .visual-wrapper {
   text-align: center;
+  
+  .visual-inner {
+    height: 75vh;
+  }
+  
   .view-more {
     color: #17243e;
     border: 1px solid #17243e;
@@ -73,4 +78,14 @@
       color: white;
     }
   }
+}
+
+#map-container
+{
+  height: 100% !important;
+}
+
+#map-title
+{
+  display: none;
 }

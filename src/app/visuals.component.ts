@@ -61,7 +61,7 @@ export class VisualsComponent implements OnInit
       let id = data[i].id;
       let dataSet = data[i].dataSet;
       let wrapper = $('<div>', {class: 'visual-wrapper'});
-      wrapper.append(`<div id=${id}></div>`);
+      wrapper.append(`<div id=${id} class='visual-inner'></div>`);
       wrapper.append(`<a href="/visuals/${dataSet}/${id}" class="view-more">View Details</a>`);
       $("#content").append(wrapper);
       (<any>window).visualize.renderVisualFromConfig(data[i], id);
@@ -77,6 +77,7 @@ export class VisualsComponent implements OnInit
     if(val.dataset != undefined)
     {
       this.currentSelectedDataset = val.dataset;
+      $('.site-title>h2').hide();
       this.getFirebaseData(val.dataset, null, (results) => {
         console.log("Firebase Results", results);
         this.renderData(results.firebaseData);
@@ -84,13 +85,15 @@ export class VisualsComponent implements OnInit
         let temp = results.realNames.filter((x) => x.id === val.dataset);
         if(temp.length > 0) title = temp[0].name;
         
-        $('.site-title>h2').text(title + " Data");
+        $('.site-title>h2').show().text(title + " Data");
       });
       $('#dataset-grid').hide();
+      $('#temp-stuff').hide();
       
     }
     else
     {
+      (<any>window).visualize.renderVisualFromConfig(`{"type":"Bubble-Map-Chart","dataSet":"Bell-Tower-Page-Final","attributes":{"title":"","size_by":"Tower height_m","color_by":"Tower height_m","bubble_size":{"range":[1,100]},"color":{"mode":"interpolate","colorspace":"hcl","range":["#000080","#CD0000"]},"mapStyles":[{"elementType":"geometry","stylers":[{"color":"#f9f5ed"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#b0e1f4"}]},{"elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"road","stylers":[{"visibility":"off"}]},{"featureType":"transit","stylers":[{"visibility":"off"}]}]}}`, 'content');
       this.getFirebaseInfo(() =>
       {
         let container = $('#dataset-grid');
