@@ -44,7 +44,12 @@
 
 .dataset-block {
   text-align: center;
+  margin-bottom: 5px;
   
+  .image-wrapper {
+    padding: 35px;
+    background: white;
+  }
   img {
     max-width: 100%;
   }

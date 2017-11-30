@@ -13,3 +13,7 @@ body {
   margin-top: $header-height;
   min-height:calc(100vh - #{$header-height + $footer-height});
 }
+
+.visual-wrapper {
+  padding: 15px;
+}

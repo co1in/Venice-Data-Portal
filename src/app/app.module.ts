@@ -10,6 +10,7 @@ import { HeaderComponent } from './header.component';
 import { VisualsComponent } from './visuals.component';
 import { ArticlesComponent } from './articles.component';
 import { DownloadsComponent } from './downloads.component';
+import { IndividualComponent } from './individual.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { DownloadsComponent } from './downloads.component';
     HeaderComponent,
     VisualsComponent,
     ArticlesComponent,
-    DownloadsComponent
+    DownloadsComponent,
+    IndividualComponent
   ],
   imports: [
     BrowserModule,
@@ -32,12 +34,19 @@ import { DownloadsComponent } from './downloads.component';
         pathMatch: 'full'
       },
       {
-        path: 'visuals',
-        component: VisualsComponent
+        path: 'visuals/:dataset/:visualid',
+        component: IndividualComponent,
+        pathMatch: 'full'
       },
       {
         path: 'visuals/:dataset',
-        component: VisualsComponent
+        component: VisualsComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'visuals',
+        component: VisualsComponent,
+        pathMatch: 'full'
       },
       {
         path: 'articles',

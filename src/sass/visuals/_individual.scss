@@ -1,0 +1,42 @@
+
+#visual-title {
+  text-align: center;
+  padding: 15px 0px;
+}
+
+#visual-container {
+  min-height: 80vh;
+  svg {
+    max-width: 100%;
+    max-height: 90vh;
+  }
+}
+
+.embed-container {
+  text-align: center;
+}
+
+.copy-embed {
+  margin: 0px 5px;
+}
+
+.details-wrapper {
+  background: #ddd;
+  border-radius: 10px;
+  margin: 5px 5px 30px 5px;
+  padding: 15px;
+}
+
+.ghost-button {
+  color: #17243e;
+    border: 1px solid #17243e;
+    border-radius: 5px;
+    padding: 10px;
+    display: inline-block;
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+      background: #17243e;
+      color: white;
+    }
+}
