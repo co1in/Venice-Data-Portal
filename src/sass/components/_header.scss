@@ -73,3 +73,17 @@
     }
   }
 }
+
+.lang-dropdown
+{
+  display: inline-block;
+  font-size: 20px;
+  color: $primary-text;
+  background-color: $primary;
+  border: none;
+  outline: none !important;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0px 10px;
+}

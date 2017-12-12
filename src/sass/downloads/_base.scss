@@ -3,8 +3,39 @@
 {
   padding-top: 15px;
   text-align: center;
-  h1
+  padding-bottom: 15px;
+  
+  .download-title
   {
-    
+    margin-bottom: 15px;
+  }
+  
+  .download-license
+  {
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .loader-container
+  {
+    position: fixed;
+    top: calc(50vh - 100px);
+    left: 0;
+    z-index: 1;
+  }
+
+  .download-link
+  {
+    cursor: pointer;
+  }
+
+  .dataset-block[disabled]
+  {
+    .download-link
+    {
+      cursor: initial;
+    }
+    opacity: 0.7;
+    pointer-events: none;
   }
 }

@@ -21,13 +21,11 @@ export class IndividualComponent implements OnInit
   ngOnInit()
   {
     this.route.params.subscribe(val => {
-      console.log("Routing params", val);
       this.dataset = val.dataset;
       this.visualId = val.visualid;
     });
     
     this.getFirebaseData((visual) => {
-      console.log(visual);
       (<any>window).visualize.renderVisualFromConfig(visual, 'visual-container');
       
       this.createEmbedCode(visual);

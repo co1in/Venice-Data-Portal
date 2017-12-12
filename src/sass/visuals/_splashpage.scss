@@ -16,7 +16,7 @@
 {
   font-family: Roboto, sans-serif;
   text-align: center;
-  margin: 0px 0px 25px 0px;
+  margin: 0px 0px 5px 0px;
   padding-top: 10px;
   
   h1 {
@@ -56,6 +56,7 @@
   
   span {
     color: black;
+    font-size: 22px;
   }
 }
 
@@ -63,10 +64,14 @@
   text-align: center;
   
   .visual-inner {
+    max-height: 75vh;
     height: 75vh;
+    display: flex;
+    flex-direction: column;
   }
   
   .view-more {
+    margin-top: 15px;
     color: #17243e;
     border: 1px solid #17243e;
     border-radius: 5px;
@@ -80,12 +85,19 @@
   }
 }
 
-#map-container
+#map-container, .map-container
 {
-  height: 100% !important;
+  min-height: 400px !important;
+  max-height: 100%;
+  height: initial;
 }
 
-#map-title
+.map-container
 {
-  display: none;
+  height: 100%;
+}
+
+.sliderDiv>span {
+  display: inline-block;
+  min-width: 35px;
 }

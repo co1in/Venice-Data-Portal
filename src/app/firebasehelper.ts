@@ -71,7 +71,6 @@ export class FirebaseHelper
         const entry = doc.val();
         if(dataset === undefined || (dataset !== undefined && entry.dataSet === dataset)) {
           results.push(entry);
-          console.log("Pushing: ", entry);
         }
       });
     });

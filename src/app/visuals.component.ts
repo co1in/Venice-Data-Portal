@@ -5,6 +5,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { FirebaseHelper } from './firebasehelper';
+import { TranslateService } from '@ngx-translate/core';
 
 import {
   trigger,
@@ -28,10 +29,13 @@ export class VisualsComponent implements OnInit
   datasetNames = [];
   realNames = [];
   visuals = [];
+  title = "";
+  showLoading = false;
   
   constructor (
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private translate : TranslateService
   ){}
   
   async getFirebaseInfo(callback=undefined)
@@ -40,7 +44,6 @@ export class VisualsComponent implements OnInit
     
     this.realNames = results.realNames
     this.datasetNames = results.datasets;
-    console.log("Results: ", results);
     if(callback !== undefined) {
       callback();
     }
@@ -62,7 +65,10 @@ export class VisualsComponent implements OnInit
       let dataSet = data[i].dataSet;
       let wrapper = $('<div>', {class: 'visual-wrapper'});
       wrapper.append(`<div id=${id} class='visual-inner'></div>`);
-      wrapper.append(`<a href="/visuals/${dataSet}/${id}" class="view-more">View Details</a>`);
+      this.translate.get('VIEW_DETAILS').subscribe((res : string) => {
+        wrapper.append(`<a href="/visuals/${dataSet}/${id}" class="view-more">${res}</a>`);
+      });
+      
       $("#content").append(wrapper);
       (<any>window).visualize.renderVisualFromConfig(data[i], id);
     }
@@ -77,45 +83,43 @@ export class VisualsComponent implements OnInit
     if(val.dataset != undefined)
     {
       this.currentSelectedDataset = val.dataset;
-      $('.site-title>h2').hide();
       this.getFirebaseData(val.dataset, null, (results) => {
-        console.log("Firebase Results", results);
         this.renderData(results.firebaseData);
-        let title = val.dataset;
-        let temp = results.realNames.filter((x) => x.id === val.dataset);
-        if(temp.length > 0) title = temp[0].name;
-        
-        $('.site-title>h2').show().text(title + " Data");
       });
+      let tempTitle = classThis.translate.get(val.dataset).subscribe((res: string) => {
+        classThis.translate.get('DATASET_DATA', {value: res}).subscribe((res2: string) => {
+          this.title = res2;
+        });
+      });
+      
       $('#dataset-grid').hide();
       $('#temp-stuff').hide();
-      
     }
     else
     {
-      (<any>window).visualize.renderVisualFromConfig(`{"type":"Bubble-Map-Chart","dataSet":"Bell-Tower-Page-Final","attributes":{"title":"","size_by":"Tower height_m","color_by":"Tower height_m","bubble_size":{"range":[1,100]},"color":{"mode":"interpolate","colorspace":"hcl","range":["#000080","#CD0000"]},"mapStyles":[{"elementType":"geometry","stylers":[{"color":"#f9f5ed"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#b0e1f4"}]},{"elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"road","stylers":[{"visibility":"off"}]},{"featureType":"transit","stylers":[{"visibility":"off"}]}]}}`, 'content');
+      classThis.translate.get('WELCOME').subscribe((res: string) => {
+          this.title = res;
+      });
+      
+      (<any>window).visualize.renderVisualFromConfig(`{"type":"Filter-Map","dataSet":"MERGE-Ponti","attributes":{"title":"Passable Bridges at High Tide","mapStyles":[{"elementType":"geometry","stylers":[{"color":"#f5f5f5"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#c9c9c9"}]},{"elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"road","stylers":[{"visibility":"off"}]},{"featureType":"transit","stylers":[{"visibility":"off"}]}],"colors":["#ff0000","#0000ff"],"shapes":["circle","circle"],"images":[],"areaSelections":[],"filters":[{"dataSet":"MERGE-Ponti","numeric":[{"column":"Height 1m North (m)","operation":"<","value":"2.2"}],"categorical":[]},{"dataSet":"MERGE-Ponti","numeric":[{"column":"Height 1m North (m)","operation":">","value":"2.2"}],"categorical":[]},null],"sliders":{"0":{"name":"Bridges","attributes":{}},"1":{"name":"Bridges","attributes":{}}}}}`, 'content');
+      this.showLoading = true;
       this.getFirebaseInfo(() =>
       {
+        this.showLoading = false;
         let container = $('#dataset-grid');
         for (let i = 0; i < this.datasetNames.length; i++) {
           let datasetName = this.datasetNames[i];
-          let newBlock = $('<div>', {class: 'col-12 col-sm-6 col-md-4 col-lg-3 block dataset-block'});
+          let newBlock = $('<div>', {id: `${datasetName}-block`, class: 'col-12 col-sm-6 col-md-4 col-lg-3 block dataset-block'});
           let link = $('<a>', {href: `/visuals/${datasetName}`});
           let imgWrapper = $('<div>', {class: 'image-wrapper'});
-          let img = $('<img>', {src: `/assets/${datasetName}.png`});
+          let img = $('<img>', {src: `/assets/datasets2/${datasetName}.svg`});
           imgWrapper.append(img);
           link.append(imgWrapper);
           
-          for(let p = 0; p < this.realNames.length; p++)
-          {
-            if(this.realNames[p].id === datasetName)
-            {
-              datasetName = this.realNames[p].name;
-              break;
-            }
-          }
+          this.translate.get(datasetName).subscribe((res: string) => {
+            link.append(`<span>${res}</span>`);
+          });
           
-          link.append(`<span>${datasetName}</span>`);
           newBlock.append(link);
           container.append(newBlock);
         }
@@ -133,10 +137,11 @@ export class VisualsComponent implements OnInit
   {
     $('#content').slick({
       infinite: false,
-      slidesToShow: 2,
+      slidesToShow: 1,
       slidesToScroll: 1,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 2000,
+      swipe: false
     });
   }
   
@@ -145,7 +150,7 @@ export class VisualsComponent implements OnInit
     let visualThis = this;
     $(document).ready(function()
     {
-      $('.site-title>h1').css('transform', 'scale(1)');
+      $('.site-title>h2').css('transform', 'scale(1)');
       
       // visualThis.enableSlick();
     });

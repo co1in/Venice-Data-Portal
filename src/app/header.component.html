@@ -3,12 +3,16 @@
     <div class="container logo-container">
       <div class="row d-flex align-items-center">
         <div class="col-md-8">
-          <a href="/"><h2>VPC Data Portal</h2></a>
+          <a href="/"><h2>{{ 'VPC_DATA_PORTAL' | translate }}</h2></a>
         </div>
         <div class="d-none d-md-flex col-md-4 align-items-center nav-links">
-          <span class="nav-link"><a routerLink="/visuals">Visuals</a></span>
-          <span class="nav-link"><a routerLink="/articles">Articles</a></span>
-          <span class="nav-link"><a routerLink="/downloads">Downloads</a></span>
+          <span class="nav-link"><a routerLink="/visuals">{{ 'VISUALS' | translate}}</a></span>
+          <!-- <span class="nav-link"><a routerLink="/articles">Articles</a></span> -->
+          <span class="nav-link"><a routerLink="/downloads">{{ 'DOWNLOADS' | translate}}</a></span>
+          <select class="lang-dropdown nav-link" id="language-selector">
+            <option value="en">EN</option>
+            <option value="it">IT</option>
+          </select>
         </div>
       </div>
     </div>

@@ -1,22 +1,30 @@
 
-<div id="visual-title"><h2>Visual Details</h2></div>
+<div id="visual-title"><h2>{{ 'VISUAL_DETAILS' | translate}}</h2></div>
 <div class="container individual">
   <div class="row">
-    <div class="col-12" id="visual-container"></div>
+    <div class="col-12 d-flex flex-column" id="visual-container"></div>
     <div class="col-12" id="details-container">
       <div class="details-wrapper">
         <div class="details-title">
-          Get the embed code for this visual:
+          {{ 'GET_EMBED_CODE' | translate}}
         </div>
         <div class="embed-container container">
           <div class="row">
             <div class="col-6 d-flex align-items-center">
               <textarea id="embed-text"></textarea>
-              <span class="copy-embed ghost-button" id="copy-embed">Copy Code</span>
+              <span class="copy-embed ghost-button" id="copy-embed">{{ 'COPY_CODE' | translate}}</span>
             </div>
-            <div class="col-6"></div>
+            <div class="col-6">
+              <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank"><img src="/assets/by-sa.svg" /></a>
+              <br />
+              <span>{{"LICENSED_UNDER" | translate }} <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</span>
+            </div>
           </div>
-            
+          <div class="row" class="sandbox-blurb">
+            <div class="col-12">
+              {{ "CREATED_USING" | translate }}<a href="https://sandbox.veniceprojectcenter.org" target="_blank">Sandbox Tool</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -16,8 +16,14 @@
   text-align: center;
 }
 
+#embed-text {
+  width: 100%;
+  height: 80%;
+}
+
 .copy-embed {
   margin: 0px 5px;
+  min-width: 105px;
 }
 
 .details-wrapper {
@@ -39,4 +45,14 @@
       background: #17243e;
       color: white;
     }
+}
+
+form.slider {
+  display: inline-block;
+  width: 28vw;
+  padding: 0 2vw;
+}
+
+.sandbox-blurb {
+  margin-top: 15px;
 }
